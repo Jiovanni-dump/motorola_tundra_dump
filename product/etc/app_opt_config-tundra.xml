@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    Power optimizations device config
+-->
+<app-optimization version="1">
+
+    <devconfig>
+        <thermal-sensor>back_temp</thermal-sensor>
+        <!-- cpu profiles from low to high
+            MAX_FREQ_CLUSTER_BIG_CORE_0 = 0x40804000,
+            MIN_FREQ_CLUSTER_BIG_CORE_0 = 0x40800000,
+            MAX_FREQ_CLUSTER_PRIME_CORE_0 = 0x40804200,
+            MIN_FREQ_CLUSTER_PRIME_CORE_0 = 0x40800200
+        -->
+        <!-- limit profile -->
+        <profile name="0">0x40804000, 1324, 0x40804200, 1075</profile>
+        <profile name="1">0x40804000, 1555, 0x40804200, 1305</profile>
+        <profile name="2">0x40804000, 1766, 0x40804200, 1555</profile>
+        <profile name="3">0x40804000, 1996, 0x40804200, 1785</profile>
+        <profile name="4">0x40804000, 2227, 0x40804200, 2265</profile>
+        <profile name="5">0x40804000, 4095, 0x40804200, 4095</profile>
+        <profile name="browser">0x40804000, 1996, 0x40804200, 844</profile>
+        <profile name="fullscreen_video">0x40804000, 1996, 0x40804200, 1555</profile>
+    </devconfig>
+
+    <optimization name="base_app">
+        <supported-modes>video_mode, video_fullscreen_mode</supported-modes>
+        <limit profile="4"/>
+        <limit temp="41" tempClr="39" profile="4" rr="90"/>
+        <limit temp="44" tempClr="42" profile="3" rr="60"/>
+    </optimization>
+
+    <optimization name="rr_opt_app" parent="base_app">
+        <default-rr>auto</default-rr>
+    </optimization>
+
+    <optimization name="rr_limit_app" parent="rr_opt_app">
+        <limit rr="90"/>
+    </optimization>
+
+    <optimization name="navigation_app" parent="rr_opt_app">
+        <idle-fps>30</idle-fps>
+        <limit profile="2"/>
+    </optimization>
+
+    <optimization name="reading_app" parent="rr_opt_app">
+        <idle-fps>30</idle-fps>
+        <limit profile="1"/>
+    </optimization>
+
+    <optimization name="rr_deep_opt_app" parent="rr_opt_app">
+        <min-fps>30</min-fps>
+    </optimization>
+
+    <optimization name="low_latency_app" parent="base_app">
+        <llm>true</llm>
+    </optimization>
+
+    <optimization name="normal_app" parent="base_app">
+    </optimization>
+
+    <optimization name="com.zui.browser" parent="rr_opt_app">
+        <limit profile="browser"/>
+    </optimization>
+
+    <optimization name="skynet.cputhrottlingtest" parent="base_app">
+        <thermal>highload</thermal>
+    </optimization>
+
+    <optimization name="video_mode">
+        <default-rr>auto</default-rr>
+    </optimization>
+
+    <optimization name="video_fullscreen_mode">
+       <default-rr>video</default-rr>
+        <limit profile="fullscreen_video"/>
+    </optimization>
+
+    <!-- limit rr to 90 if battery low (<20%), only for normal apps -->
+    <optimization name="battery_low_mode">
+        <limit rr="90" />
+    </optimization>
+
+    <optimization name="com.tencent.map" refs="navigation_app" />
+    <optimization name="com.baidu.BaiduMap" refs="navigation_app" />
+    <optimization name="com.autonavi.minimap" refs="navigation_app" />
+    <optimization name="com.google.android.apps.maps" refs="navigation_app" />
+    <optimization name="com.ss.android.ugc.aweme" refs="rr_deep_opt_app" />
+    <optimization name="com.zhiliaoapp.musically" refs="rr_deep_opt_app" />
+    <optimization name="com.tencent.mm" refs="low_latency_app" />
+    <optimization name="com.microsoft.teams" refs="low_latency_app" />
+    <optimization name="com.ss.android.article.news" refs="reading_app" />
+    <optimization name="com.netease.newsreader.activity" refs="reading_app" />
+    <optimization name="com.sohu.newsclient" refs="reading_app" />
+    <optimization name="com.sina.weibo" refs="reading_app" />
+    <optimization name="com.kmxs.reader" refs="reading_app" />
+    <optimization name="com.reddit.frontpage" refs="reading_app" />
+    <optimization name="us.zoom.videomeetings" refs="low_latency_app" />
+
+</app-optimization>
