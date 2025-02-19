@@ -1,0 +1,14 @@
+# user 14 U1SJS34.2-92-10-3 c8794 release-keys
+- manufacturer: motorola
+- platform: lahaina
+- codename: tundra
+- flavor: user
+- release: 14
+- id: U1SJS34.2-92-10-3
+- incremental: c8794
+- tags: release-keys
+- fingerprint: motorola/tundra_g/tundra:11/U1SJS34.2-92-10-3/c8794:user/release-keys
+- is_ab: true
+- brand: motorola
+- branch: user-14-U1SJS34.2-92-10-3-c8794-release-keys
+- repo: motorola_tundra_dump
