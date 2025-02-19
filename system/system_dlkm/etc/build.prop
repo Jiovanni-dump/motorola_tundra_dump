@@ -1,0 +1,21 @@
+####################################
+# from generate-common-build-props
+# These properties identify this partition image.
+####################################
+ro.product.system_dlkm.brand=motorola
+ro.product.system_dlkm.device=tundra
+ro.product.system_dlkm.manufacturer=motorola
+ro.product.system_dlkm.model=motorola edge 30 fusion
+ro.product.system_dlkm.name=tundra_g
+ro.system_dlkm.build.date=Wed Nov 20 04:19:22 CST 2024
+ro.system_dlkm.build.date.utc=1732097962
+ro.system_dlkm.build.fingerprint=motorola/tundra_g/tundra:14/U1SJS34M.2-92-10-3/4238a9:user/release-keys
+ro.system_dlkm.build.id=U1SJS34M.2-92-10-3
+ro.system_dlkm.build.tags=release-keys
+ro.system_dlkm.build.type=user
+ro.system_dlkm.build.version.incremental=4238a9
+ro.system_dlkm.build.version.release=14
+ro.system_dlkm.build.version.release_or_codename=14
+ro.system_dlkm.build.version.sdk=34
+# end of file
+
